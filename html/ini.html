@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="shortcut icon" href="images/logocab-white.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CabanTech</title>
+    <link rel="shortcut icon" href="../images/logocab-white.png" type="image/x-icon">
+    <meta charset="UTF-8">
+</head>
+
+
+
+<body class="bg-gray-100 font-[Poppins]">
+    <header>
+        <nav class="bg-stone-900 border-stone-900 px-4 lg:px-6 py-2.5">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <a href="ini.html" class="flex items-center">
+                    <img src="../images/logocab-white.png" class="mr-3 h-6 sm:h-9" alt="CabanTech" />
+                    <span class="self-center text-xl font-semibold whitespace-nowrap text-white">CabanTech</span>
+                </a>
+                <div class="flex items-center lg:order-2">
+                    <a href="#" onclick="logout()"
+                        class="text-white hover:bg-red-600 focus:ring-4 focus:ring-red-600 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none">Cerrar
+                        Sesión</a>
+                    <a href="admin.html"
+                        class="fa-solid fa-screwdriver-wrench text-white p-2 rounded-md hover:bg-orange-600 shadow-lg shadow-orange-600/50"></a>
+                    <button data-collapse-toggle="mobile-menu-2" type="button"
+                        class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                        aria-controls="mobile-menu-2" aria-expanded="false">
+                        <span class="sr-only">Menu</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="pt-18">
+        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+            <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+                <p>Hola, (usuario)</p>
+                <p class="uppercase tracking-loose w-full text-2xl">Domotiza tus propiedades</p>
+                <h1 class="my-4 text-5xl font-bold leading-tight">
+                    Maneja con facilidad desde el dispositivo
+                </h1>
+                <a href="uno.html"
+                    class="block mx-auto hover:bg-orange-600 lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out hover:text-white">
+                    Iniciar
+                </a>
+            </div>
+            <div class="w-full md:w-3/5 py-6 text-center">
+                <img class="w-full md:w-4/5 z-50 mx-auto" src="../images/fond.png" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var sessionCookie = document.cookie.replace(/(?:(?:^|.*;\s*)session\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        var userDataCookie = document.cookie.replace(/(?:(?:^|.*;\s*)datos_usuario\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        userDataCookie = decodeURIComponent(userDataCookie);
+        userData = JSON.parse(userDataCookie);
+        document.querySelector('p').textContent = 'Hola, ' + userData.nombre+" "+userData.apellidos;
+
+        if (!sessionCookie) {
+            // Si la cookie de sesión no está presente, redirigir al usuario a la página de inicio de sesión
+            window.location.href = '../index.html';
+        } else if (userDataCookie) {
+            // Si la cookie de datos del usuario está presente, decodificarla y mostrar su contenido en la consola
+            try {
+                var userData = JSON.parse(userDataCookie);
+                console.log(userData);
+            } catch (error) {
+                console.error("Error al analizar la cookie de datos_usuario:", error);
+            }
+        }
+
+        // Obtén el elemento
+        var linkElement = document.querySelector('.fa-solid.fa-screwdriver-wrench');
+         
+        // Agrega un controlador de eventos 'click'
+        linkElement.addEventListener('click', function (event) {
+            // Evita el comportamiento predeterminado del enlace
+            event.preventDefault();
+
+            // Verifica el rol del usuario
+            if (userData.Rol === 'Administrador') {
+                // Redirige al usuario a admin.html si es un administrador
+                window.location.href = 'admin.html';
+            } else {
+                // No hagas nada si el usuario no es un administrador
+            }
+        });
+
+
+        // Verifica el rol del usuario cuando se carga la página
+
+
+
+
+        // Función para borrar la cookie de sesión y cerrar sesión
+        function logout() {
+            document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            // Redirigir al usuario a la página de inicio de sesión
+            window.location.href = '../index.html';
+        }
+
+
+    </script>
+
+</body>
+
+</html>

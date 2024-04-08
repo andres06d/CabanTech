@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="images/logocab-white.png" type="image/x-icon">
+    <title>CabanTech</title>
+    <link rel="shortcut icon" href="../images/logocab-white.png" type="image/x-icon">
+    <meta charset="UTF-8">
+</head>
+
+<body class="bg-gray-100 font-[Poppins]">
+    <header>
+        <nav class="bg-stone-900 border-stone-900">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="ini.html" class="flex items-center">
+                    <img src="../images/logocab-white.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CabanTech</span>
+                </a>
+                <div class="flex items-center md:order-2">
+                    <a href="#" onclick="logout()"
+                        class="text-white hover:bg-red-600 focus:ring-4 focus:ring-red-600 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none">Cerrar
+                        Sesión</a>
+                    <button type="button"
+                        class="flex mr-3 text-sm bg-stone-900 hover:rounded-full hover:ring-4 hover:bg-orange-600 md:mr-0 focus:ring-4 focus:ring-orange-600 focus:rounded-full"
+                        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom">
+                        <span class="sr-only">Abrir menu de usuario</span>
+                        <img class="w-8 h-8 rounded-full" src="../images/user_h.png" alt="foto usuario">
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="z-50 hidden my-4 text-base list-none bg-stone-700 divide-y divide-gray-100 rounded-lg shadow"
+                        id="user-dropdown">
+                        <div class="px-4 py-3">
+                            <span class="block text-sm text-gray-900 dark:text-white" id="SpamNombreUsuario">Luis
+                                Negrette</span>
+                            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"
+                                id="SpamCorreoUsuario">luis@cabantech.com</span>
+                        </div>
+                    </div>
+                    <button data-collapse-toggle="navbar-user" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-stone-900"
+                        aria-controls="navbar-user" aria-expanded="false">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-4 py-4">
+        <h2 class="text-3xl font-bold mb-4">Tú Informacion</h2>
+        <div class="grid grid-cols-2 gap-4 grid-auto-rows max-content">
+            <!-- Columna izquierda -->
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Modificar</h2>
+                <div class="flex flex-col gap-4">
+                    <div class="flex">
+                        <div class="w-1/2 pr-2">
+                            <label class="block font-bold mb-1">Nombre:</label>
+                            <input type="text" id="nombreuser" class="border border-gray-300 rounded px-2 py-1 w-full">
+                        </div>
+                        <div class="w-1/2 pl-2">
+                            <label class="block font-bold mb-1">Apellido:</label>
+                            <input type="text" id="apellidouser"
+                                class="border border-gray-300 rounded px-2 py-1 w-full">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-1/2 pr-2">
+                            <label class="block font-bold mb-1">Tipo de Documento:</label>
+                            <select id="asgina" name="tipoid" class="px-2 py-1 border rounded w-full">
+                                <option value="1">NUIP</option>
+                                <option value="2">Cedula de Ciudadania</option>
+                                <option value="3">Tarjeta de Identidad</option>
+                                <option value="4">Pasaporte</option>
+                                <option value="5">Cedula de Extranjeria</option>
+
+
+                            </select>
+                        </div>
+                        <div class="w-1/2 pl-2">
+                            <label class="block font-bold mb-1">Número de Documento:</label>
+                            <input type="text" id="numeroid" class="border border-gray-300 rounded px-2 py-1 w-full">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-1/2 pr-2">
+                            <label class="block font-bold mb-1">Teléfono:</label>
+                            <input type="text" id="tel" class="border border-gray-300 rounded px-2 py-1 w-full">
+                        </div>
+                        <div class="w-1/2 pl-2">
+                            <label class="block font-bold mb-1">Dirección:</label>
+                            <input type="text" id="direc" class="border border-gray-300 rounded px-2 py-1 w-full">
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-1/2 pr-2">
+                            <label class="block font-bold mb-1">Fecha de Nacimiento:</label>
+                            <input type="date" id="fechanacimiento">
+                        </div>
+                        <div class="w-1/2 pl-2">
+                            <label class="block font-bold mb-1">Contraseña:</label>
+                            <input type="text" id="contra" class="border border-gray-300 rounded px-2 py-1 w-full">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-4 text-center">
+                    <button id="modificar"
+                        class="p-2 hover:bg-orange-600 rounded-md bg-stone-900 text-white border border-orange-600">Guardar</button>
+                </div>
+
+                <div class="flex gap-2">
+                    <div class="w-1/2">
+                        <label class="block font-bold mb-1">Seleccione la Cabaña:</label>
+                        <select id="selectcabana" name="cabananom" class="px-2 py-1 border rounded w-full">
+                            <option value="0">Seleccionar la Cabaña</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end mt-6 w-1/2">
+                        <button id="seleccioncabana"
+                            class="p-1 hover:bg-orange-600 rounded-md bg-stone-900 text-white border border-orange-600 w-64 mx-auto">Seleccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna derecha -->
+            <div>
+                <img src="../images/logocab.png" class="w-3/5 mx-auto" alt="Cabantech Logo">
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        var Nombre = document.getElementById('SpamNombreUsuario');
+        var Correo = document.getElementById('SpamCorreoUsuario');
+        var sessionCookie = document.cookie.replace(/(?:(?:^|.*;\s*)session\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        var userDataCookie = document.cookie.replace(/(?:(?:^|.*;\s*)datos_usuario\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        userDataCookie = decodeURIComponent(userDataCookie);
+        var userData = JSON.parse(userDataCookie);
+        if (!sessionCookie) {
+            // Si la cookie de sesión no está presente, redirigir al usuario a la página de inicio de sesión
+            window.location.href = '../index.html';
+        } else if (userDataCookie) {
+            // Si la cookie de datos del usuario está presente, decodificarla y mostrar su contenido en la consola
+            try {
+
+                Nombre.textContent = userData.nombre;
+                Correo.textContent = userData.correo;
+                console.log(userData);
+            } catch (error) {
+                console.error("Error al analizar la cookie de datos_usuario:", error);
+            }
+        }
+
+        // Función para borrar la cookie de sesión y cerrar sesión
+        function logout() {
+            document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            // Redirigir al usuario a la página de inicio de sesión
+            window.location.href = '../index.html';
+        }
+
+        var selectCabana = document.getElementById('selectcabana');
+
+        // Llenar el select con las opciones de cabañas
+        userData.cabañas.forEach(function (cabana) {
+            var option = document.createElement('option');
+            option.value = cabana["ID Cabaña"];
+            option.text = cabana['Nombre Cabaña'];
+            selectCabana.add(option);
+
+            // Seleccionar la opción que está marcada como cabaña seleccionada
+            if (userData.cabañaSeleccionada && userData.cabañaSeleccionada["ID Cabaña"] === cabana["ID Cabaña"]) {
+                option.selected = true;
+            }
+        });
+
+        // ... (código anterior)
+
+        // Obtener el elemento del botón por su ID
+    var seleccionCabanaBtn = document.getElementById('seleccioncabana');
+
+        // Agregar un evento de clic al botón
+        seleccionCabanaBtn.addEventListener('click', function () {
+            // Obtener el valor seleccionado en el elemento select
+            var cabañaSeleccionadaID = selectCabana.value;
+
+            // Buscar la cabaña seleccionada en el array de cabañas en userData
+            var cabañaSeleccionada = userData.cabañas.find(function (cabana) {
+                return cabana['ID Cabaña'] === cabañaSeleccionadaID;
+            });
+
+            // Actualizar la propiedad cabañaSeleccionada en userData
+            if (cabañaSeleccionada) {
+                userData.cabañaSeleccionada = cabañaSeleccionada;
+            }
+
+            // Actualizar la cookie 'datos_usuario' con la nueva información
+            document.cookie = 'datos_usuario=' + encodeURIComponent(JSON.stringify(userData)) + '; path=/';
+
+            // Mostrar en la consola la información actualizada
+            console.log('userData actualizado:', userData);
+        });
+
+        $(document).ready(function () {
+            // Obtener el ID del usuario que deseas modificar
+            var usuarioID = userData['id usuario']; // Puedes cambiar esto con el ID del usuario que necesitas
+
+            // Llamar al archivo PHP para obtener los datos del usuario
+            $.ajax({
+                url: '../php/consulta_usuario.php',
+                type: 'POST',
+                data: { usuario_id: usuarioID },
+                dataType: 'json',
+                success: function (data) {
+                    // Llenar los campos del formulario con los datos obtenidos
+                    console.log((data['Tipo de Documento']));
+                    $('#nombreuser').val(data.Nombre);
+                    $('#apellidouser').val(data.Apellidos);
+                    $('#numeroid').val(data['Numero de Documento']);
+                    $('#tel').val(data.Telefono);
+                    $('#direc').val(data.Direccion);
+                    $('#fechanacimiento').val(data['Fecha de Nacimiento']);
+                    $('#contra').val(data.Contraseña);
+
+                    // Seleccionar la opción correcta en el select
+                    $('#asgina option').each(function () {
+                        if ($(this).text() === data['Tipo de Documento']) {
+                            $(this).prop('selected', true);
+                        }
+                    });
+                },
+                error: function () {
+                    console.log('Error al obtener los datos del usuario');
+                }
+            });
+        });
+
+
+
+
+
+
+        var miBoton = document.getElementById('modificar');
+
+        // Agregar un evento de clic al botón
+        miBoton.addEventListener('click', function () {
+            alert('¡Hiciste clic en el botón!');
+
+            var nombre = document.getElementById('nombreuser').value;
+            var apellido = document.getElementById('apellidouser').value;
+            // Obtener otros campos de entrada de manera similar
+            var tipoDocumento = document.getElementById('asgina').value;
+            var numeroDocumento = document.getElementById('numeroid').value;
+            var telefono = document.getElementById('tel').value;
+            var direccion = document.getElementById('direc').value;
+            var fechaNacimiento = document.getElementById('fechanacimiento').value;
+            var contrasena = document.getElementById('contra').value;
+
+            // Hacer algo con el contenido, por ejemplo, mostrarlo en la consola
+            console.log('Nombre: ' + nombre);
+            console.log('Apellido: ' + apellido);
+            console.log('Tipo de Documento: ' + tipoDocumento);
+            console.log('Número de Documento: ' + numeroDocumento);
+            console.log('Teléfono: ' + telefono);
+            console.log('Dirección: ' + direccion);
+            console.log('Fecha de Nacimiento: ' + fechaNacimiento);
+            console.log('Contraseña: ' + contrasena);
+
+            var usuarioID = usuarioID = userData['id usuario']
+
+            var formData = new FormData();
+            formData.append('usuario_id', usuarioID);
+            formData.append('nombre', nombre);
+            formData.append('apellidos', apellido);
+            formData.append('tipoDocumento', tipoDocumento);
+            formData.append('numeroDocumento', numeroDocumento);
+            formData.append('telefono', telefono);
+            formData.append('direccion', direccion);
+            formData.append('fechaNacimiento', fechaNacimiento);
+            formData.append('contrasena', contrasena);
+            axios.post("../php/actualizar_usuario.php", formData)
+                .then(function (response) {
+
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

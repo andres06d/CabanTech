@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="shortcut icon" href="images/logocab-white.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
+    <title>CabanTech</title>
+    <link rel="shortcut icon" href="../images/logocab-white.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+</head>
+
+<body class="bg-gray-100 font-[Poppins]">
+    <header>
+        <nav class="bg-stone-900 border-stone-900">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="ini.html" class="flex items-center">
+                    <img src="../images/logocab-white.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CabanTech</span>
+                </a>
+                <div class="flex items-center md:order-2">
+                    <button type="button"
+                        class="flex mr-3 text-sm bg-stone-900 hover:rounded-full hover:ring-4 hover:bg-orange-600 md:mr-0 focus:ring-4 focus:ring-orange-600 focus:rounded-full"
+                        id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                        data-dropdown-placement="bottom">
+                        <span class="sr-only">Abrir menu de usuario</span>
+                        <img class="w-8 h-8 rounded-full" src="../images/user_h.png" alt="foto usuario">
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="z-50 hidden my-4 text-base list-none bg-stone-700 divide-y divide-gray-100 rounded-lg shadow"
+                        id="user-dropdown">
+                        <div class="px-4 py-3">
+                            <span class="block text-sm text-gray-900 dark:text-white" id="SpamNombreUsuario">Luis
+                                Negrette</span>
+                            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"
+                                id="SpamCorreoUsuario">luis@cabantech.com</span>
+                        </div>
+                        <ul class="py-2" aria-labelledby="user-menu-button">
+                            <li>
+                                <a href="ajustes.html"
+                                    class="block px-4 py-2 text-sm text-white hover:bg-orange-600">Ajustes</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="logout()"
+                                    class="block px-4 py-2 text-sm text-white hover:bg-red-600">Cerrar Sesion</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button data-collapse-toggle="navbar-user" type="button"
+                        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-stone-900"
+                        aria-controls="navbar-user" aria-expanded="false">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+                    <ul
+                        class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-stone-900 rounded-lg bg-stone-700 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-stone-900">
+                        <li>
+                            <a href="uno.html"
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-orange-600 md:hover:bg-transparent md:hover:text-orange-600 md:p-0">Encendido
+                                Individual</a>
+                        </li>
+                        <li>
+                            <a href="dos.html"
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-orange-600 md:hover:bg-transparent md:hover:text-orange-600 md:p-0">Encendido
+                                Masivo</a>
+                        </li>
+                        <li>
+                            <a href="tres.html"
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-orange-600 md:hover:bg-transparent md:hover:text-orange-600 md:p-0">Encendido
+                                Programado</a>
+                        </li>
+                        <li>
+                            <a href="cuatro.html"
+                                class="block py-2 pl-3 pr-4 text-white rounded hover:bg-orange-600 md:hover:bg-transparent md:hover:text-orange-600 md:p-0">Estado
+                                Programacion</a>
+                        </li>
+                        <li>
+                            <a href="cinco.html"
+                                class="block py-2 pl-3 pr-4 text-white bg-orange-600 rounded md:bg-transparent md:text-orange-600 md:p-0"
+                                aria-current="page">Historial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-12">
+        <h2 class="text-2xl font-bold mb-4">Historial de encendido de luces</h2>
+
+
+        <table id="miTabla" class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-orange-600 uppercase">
+                <tr>
+                    <th class="px-6 py-3 text-center mb-40">Luz</th>
+                    <th class="px-6 py-3 text-center mb-4">Estado</th>
+                    <th class="px-6 py-3 text-center mb-4">Fecha</th>
+                    <th class="px-6 py-3 text-center mb-4">Hora</th>
+                </tr>
+            </thead>
+            <tbody id="led-changes-body" class="stone-900 text-white text-center"></tbody>
+        </table>
+    </div>
+
+    <script>
+        var Nombre = document.getElementById('SpamNombreUsuario');
+        var Correo = document.getElementById('SpamCorreoUsuario');
+        var sessionCookie = document.cookie.replace(/(?:(?:^|.*;\s*)session\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        var userDataCookie = document.cookie.replace(/(?:(?:^|.*;\s*)datos_usuario\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        userDataCookie = decodeURIComponent(userDataCookie);
+
+        if (!sessionCookie) {
+            // Si la cookie de sesión no está presente, redirigir al usuario a la página de inicio de sesión
+            window.location.href = '../index.html';
+        } else if (userDataCookie) {
+            // Si la cookie de datos del usuario está presente, decodificarla y mostrar su contenido en la consola
+            try {
+                var userData = JSON.parse(userDataCookie);
+                Nombre.textContent = userData.nombre;
+                Correo.textContent = userData.correo;
+                console.log(userData);
+            } catch (error) {
+                console.error("Error al analizar la cookie de datos_usuario:", error);
+            }
+        }
+
+        // Función para borrar la cookie de sesión y cerrar sesión
+        function logout() {
+            document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            // Redirigir al usuario a la página de inicio de sesión
+            window.location.href = '../index.html';
+        }
+
+
+
+        function createCell(text, classes = []) {
+            const cell = document.createElement('td');
+            cell.className = classes.join(' ');
+            cell.textContent = text;
+            return cell;
+        }
+
+        var formData = new FormData();
+        formData.append("idCabaña", userData.cabañaSeleccionada["ID Cabaña"]);
+
+        axios.post('../php/obtener_datos.php', formData)
+            .then(function (response) {
+                var ledChanges = response.data;
+                console.log(response.data);
+
+                var tableBody = document.getElementById('led-changes-body');
+
+
+                ledChanges.forEach(function (change) {
+                    var estado = "";
+                    if (change.Estado == 1) {
+                        estado = "encendido"
+                    } else {
+                        estado = "apagado"
+                    }
+                    var row = document.createElement('tr');
+                    row.className = 'border-b border-gray-200';
+                    row.appendChild(createCell(change.Nombre || 'Unknown', ['px-6', 'py-4', 'font-medium', 'text-white', 'whitespace-nowrap', 'bg-stone-800']));
+                    row.appendChild(createCell(estado, ['px-6', 'py-4', 'text-black', 'bg-stone-200']));
+                    row.appendChild(createCell(change.Fecha, ['px-6', 'py-4', 'font-medium', 'text-white', 'bg-stone-800', 'whitespace-nowrap', 'bg-gray-50']));
+                    row.appendChild(createCell(change.Hora, ['px-6', 'py-4', 'text-black', 'bg-stone-200']));
+
+                    tableBody.appendChild(row);
+
+                });
+
+                // Aplica DataTables después de llenar la tabla
+                $(document).ready(function () {
+                    setTimeout(function () {
+                        var table = $('#miTabla').DataTable({
+                            searching: false, // Deshabilita la función de búsqueda
+                            info: false, // Deshabilita la información de la tabla
+                            // Deshabilita la paginación
+                            language: {
+                                "lengthMenu": "Mostrar _MENU_ registros por página",
+                                "zeroRecords": "No se encontraron resultados",
+                                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                                "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                                "infoFiltered": "(filtrado de _MAX_ entradas totales)",
+                                "paginate": {
+                                    "previous": "Anterior",
+                                    "next": "Siguiente"
+                                }
+                            },
+                            initComplete: function () {
+                                this.api().columns().every(function () {
+                                    var column = this;
+                                    var select = $('<select class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"><option value=""></option></select>')
+                                        .appendTo($(column.header()))
+                                        .on('mousedown', function (e) {
+                                            // Prevén que se ejecute la ordenación cuando haces clic en el select
+                                            e.stopPropagation();
+                                        })
+                                        .on('change', function () {
+                                            var val = $.fn.dataTable.util.escapeRegex(
+                                                $(this).val()
+                                            );
+
+                                            column
+                                                .search(val ? '^' + val + '$' : '', true, false)
+                                                .draw();
+                                        });
+
+                                    column.data().unique().sort().each(function (d, j) {
+                                        select.append('<option value="' + d + '">' + d + '</option>')
+                                    });
+                                });
+                            },
+                        });
+                    },  ); // Retrasa la ejecución en 1000 milisegundos (1 segundo)
+                });
+                // Retrasa la ejecución en 1000 milisegundos (1 segundo)
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+        // Llama a la función para agregar las opciones al selector
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="images/logocab-white.png" type="image/x-icon">
+
+    <title>CabanTech</title>
+    <link rel="shortcut icon" href="../images/logocab-white.png" type="image/x-icon">
+    <meta charset="UTF-8">
+</head>
+
+<body class="bg-gray-100 font-[Poppins]">
+    <header>
+        <nav class="bg-stone-900 border-stone-900 px-4 lg:px-6 py-2.5">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <a href="ini.html" class="flex items-center">
+                    <img src="../images/logocab-white.png" class="mr-3 h-6 sm:h-9" alt="CabanTech" />
+                    <span class="self-center text-xl font-semibold whitespace-nowrap text-white">CabanTech</span>
+                </a>
+                <div class="flex items-center lg:order-2">
+                    <a href="#" onclick="logout()"
+                        class="text-white hover:bg-red-600 focus:ring-4 focus:ring-red-600 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none">Cerrar
+                        Sesion</a>
+                    <a href="admin.html"
+                        class="fa-solid fa-screwdriver-wrench text-white p-2 rounded-md hover:bg-orange-600 shadow-lg shadow-orange-600/50"></a>
+                </div>
+                <button type="button"
+                    class="flex mr-3 text-sm bg-stone-900 hover:rounded-full hover:ring-4 hover:bg-orange-600 md:mr-0 focus:ring-4 focus:ring-orange-600 focus:rounded-full"
+                    id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                    data-dropdown-placement="bottom">
+                    <span class="sr-only">Abrir menu de usuario</span>
+                    <img class="w-8 h-8 rounded-full" src="../images/user_h.png" alt="foto usuario">
+                </button>
+                <!-- Dropdown menu -->
+                <div class="z-50 hidden my-4 text-base list-none bg-stone-700 divide-y divide-gray-100 rounded-lg shadow"
+                    id="user-dropdown">
+                    <div class="px-4 py-3">
+                        <span class="block text-sm text-gray-900 dark:text-white" id="SpamNombreUsuario">Luis
+                            Negrette</span>
+                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"
+                            id="SpamCorreoUsuario">luis@cabantech.com</span>
+                    </div>
+                </div>
+        </nav>
+    </header>
+
+    <div class="grid grid-cols-2 gap-4 py-4 grid-auto-rows max-content px-4">
+        <!-- Columna izquierda -->
+        <div>
+            <h2 class="text-2xl font-bold mb-4">Crear Usuario</h2>
+            <div class="flex flex-col gap-4">
+                <div class="flex">
+                    <div class="w-1/2 pr-2">
+                        <label class="block font-bold mb-1">Nombre:</label>
+                        <input type="text" id="nombreuser2" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    </div>
+                    <div class="w-1/2 pl-2">
+                        <label class="block font-bold mb-1">Apellido:</label>
+                        <input type="text" id="apellidouser2" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-1/2 pr-2">
+                        <label class="block font-bold mb-1">Tipo de Documento:</label>
+                        <select id="asgina2" name="tipoid" class="px-2 py-1 border rounded w-full">
+                            <option value="1">NUIP</option>
+                            <option value="2">Cedula de Ciudadania</option>
+                            <option value="3">Tarjeta de Identidad</option>
+                            <option value="4">Pasaporte</option>
+                            <option value="5">Cedula de Extranjeria</option>
+                        </select>
+                    </div>
+                    <div class="w-1/2 pl-2">
+                        <label class="block font-bold mb-1">Número de Documento:</label>
+                        <input type="text" id="numeroid2" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-1/2 pr-2">
+                        <label class="block font-bold mb-1">Teléfono:</label>
+                        <input type="text" id="tel2" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    </div>
+                    <div class="w-1/2 pl-2">
+                        <label class="block font-bold mb-1">Dirección:</label>
+                        <input type="text" id="direc2" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-1/2 pr-2">
+                        <label class="block font-bold mb-1">Fecha de Nacimiento:</label>
+                        <input type="date" id="fechanacimiento2">
+                    </div>
+                    <div class="w-1/2 pl-2">
+                        <label class="block font-bold mb-1">Contraseña:</label>
+                        <input type="text" id="contra2" class="border border-gray-300 rounded px-2 py-1 w-full">
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-1/2 pr-2">
+                        <label class="block font-bold mb-1">Rol:</label>
+                        <select id="rol" name="tipoid" class="px-2 py-1 border rounded w-full">
+                            <option value="0">Usuario</option>
+                            <option value="1">Administrador</option>
+                        </select>
+                    </div>
+                    <div class="w-1/2 pr-2">
+                        <label class="block font-bold mb-1">Correo:</label>
+                        <input type="text" id="correo" class="border border-gray-300 rounded px-2 py-1 w-full">
+
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <button id="crearuser"
+                        class="p-2 hover:bg-orange-600 rounded-md bg-stone-900 text-white border border-orange-600">Crear</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna derecha -->
+        <div>
+            <img src="../images/logocab.png" class="w-3/5 mx-auto" alt="Cabantech Logo">
+        </div>
+
+        <script>
+            var id_usuario;
+            var Nombre = document.getElementById('SpamNombreUsuario');
+            var Correo = document.getElementById('SpamCorreoUsuario');
+            var sessionCookie = document.cookie.replace(/(?:(?:^|.*;\s*)session\s*=\s*([^;]*).*$)|^.*$/, '$1');
+            var userDataCookie = document.cookie.replace(/(?:(?:^|.*;\s*)datos_usuario\s*=\s*([^;]*).*$)|^.*$/, '$1');
+            userDataCookie = decodeURIComponent(userDataCookie);
+            var userData = JSON.parse(userDataCookie);
+
+
+            if (!sessionCookie) {
+                // Si la cookie de sesión no está presente, redirigir al usuario a la página de inicio de sesión
+                window.location.href = '../index.html';
+            } else if (userDataCookie) {
+                // Si la cookie de datos del usuario está presente, decodificarla y mostrar su contenido en la consola
+                try {
+
+                    Nombre.textContent = userData.nombre;
+                    Correo.textContent = userData.correo;
+                    console.log(userData);
+                } catch (error) {
+                    console.error("Error al analizar la cookie de datos_usuario:", error);
+                }
+            }
+
+            // Función para borrar la cookie de sesión y cerrar sesión
+            function logout() {
+                document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                // Redirigir al usuario a la página de inicio de sesión
+                window.location.href = '../index.html';
+            }
+
+            window.addEventListener('load', function () {
+                if (userData.Rol !== 'Administrador') {
+                    // Redirige al usuario a ini.html si no es un administrador
+                    window.location.href = 'ini.html';
+                }
+            });
+
+
+
+            document.getElementById('crearuser').addEventListener('click', function () {
+                // Obtener valores del formulario
+                var nombre = document.getElementById('nombreuser2');
+                var apellido = document.getElementById('apellidouser2');
+                var tipoDocumento = document.getElementById('asgina2');
+                var numeroDocumento = document.getElementById('numeroid2');
+                var telefono = document.getElementById('tel2');
+                var direccion = document.getElementById('direc2');
+                var fechaNacimiento = document.getElementById('fechanacimiento2');
+                var contraseña = document.getElementById('contra2');
+                var rol = document.getElementById('rol');
+                var correo = document.getElementById('correo');
+
+                // Validar campos (puedes agregar más validaciones según tus necesidades)
+
+                // Crear objeto FormData para enviar datos al servidor
+                var formData = new FormData();
+                formData.append('nombre', nombre.value);
+                formData.append('apellido', apellido.value);
+                formData.append('tipoDocumento', tipoDocumento.options[tipoDocumento.selectedIndex].text);
+                formData.append('numeroDocumento', numeroDocumento.value);
+                formData.append('telefono', telefono.value);
+                formData.append('direccion', direccion.value);
+                formData.append('fechaNacimiento', fechaNacimiento.value);
+                formData.append('contraseña', contraseña.value);
+                formData.append('correo', correo.value);
+                formData.append('rol', rol.options[rol.selectedIndex].text);
+
+                for (var pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+
+                axios.post("../php/crear_usuario.php", formData)
+                    .then(function (response) {
+
+                        console.log(response.data);
+                        alert('usuario creado con exito');
+
+                        nombre.value = '';
+                        apellido.value = '';
+                        tipoDocumento.selectedIndex = 1;
+                        numeroDocumento.value = '';
+                        telefono.value = '';
+                        direccion.value = '';
+                        fechaNacimiento.value = '';
+                        contraseña.value = '';
+                        correo.value = '';
+                        rol.selectedIndex = 0;
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+
+
+
+
+
+
+
+            });
+
+
+
+
+
+
+        </script>
+    </div>
